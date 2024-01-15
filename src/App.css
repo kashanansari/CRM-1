@@ -1,0 +1,46 @@
+/* *{
+    background-color: black;
+} */
+
+
+.theme_btn_md{
+    background-color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 08px;
+}
+
+				                
+    #page-wrapper {
+        padding: 15px 25px;
+    }   
+
+
+
+/* SuperAdminSidebar.css */
+
+/* For Webkit browsers (Chrome, Safari) */
+.sidebar-container.overflow-y-scroll::-webkit-scrollbar {
+  width: 0.5rem; /* Adjust the width as needed */
+  display: none; /* Hide scrollbar */
+}
+
+/* For Firefox */
+.sidebar-container.overflow-y-scroll {
+  scrollbar-width: thin; /* Adjust the width as needed */
+  -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer 11 */
+}
+
+/* Show scrollbar on hover (optional) */
+.sidebar-container.overflow-y-scroll:hover::-webkit-scrollbar {
+  display: initial; /* Show scrollbar on hover in Webkit browsers */
+}
+
+/* Show scrollbar on hover (optional) */
+.sidebar-container.overflow-y-scroll:hover {
+  scrollbar-width: thin; /* Show scrollbar on hover in Firefox */
+}
+    
