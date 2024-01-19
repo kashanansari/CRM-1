@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CSR_SIdebar() {
+export default function EditProfileCRO() {
   return (
     <div>
       

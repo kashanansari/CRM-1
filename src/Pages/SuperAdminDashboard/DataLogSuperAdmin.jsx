@@ -1,15 +1,137 @@
 import React, { useState } from 'react'
-import SuperAdminSidebar from '../../Components/SuperAdminSidebar';
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+} from 'material-react-table';
+import { useMemo } from 'react';
 export default function DataLogSuperAdmin() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
+  const data = [
+    {
+      name: {
+        firstName: 'John',
+        lastName: 'Doe',
+      },
+      address: '261 Erdman Ford',
+      city: 'East Daphne',
+      state: 'Kentucky',
+    },
+    {
+      name: {
+        firstName: 'Jane',
+        lastName: 'Doe',
+      },
+      address: '769 Dominic Grove',
+      city: 'Columbus',
+      state: 'Ohio',
+    },
+    {
+      name: {
+        firstName: 'Joe',
+        lastName: 'Doe',
+      },
+      address: '566 Brakus Inlet',
+      city: 'South Linda',
+      state: 'West Virginia',
+    },
+    {
+      name: {
+        firstName: 'Kevin',
+        lastName: 'Vandy',
+      },
+      address: '722 Emie Stream',
+      city: 'Lincoln',
+      state: 'Nebraska',
+    },
+    {
+      name: {
+        firstName: 'Joshua',
+        lastName: 'Rolluffs',
+      },
+      address: '32188 Larkin Turnpike',
+      city: 'Charleston',
+      state: 'South Carolina',
+    },
+  ]
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const columns = useMemo(
+    () => [
+      {
+        accessorKey: 'Contact No',
+        header: 'Alert',
+        size: 100,
+      },
+      {
+        accessorKey: 'name.firstName', //access nested data with dot notation
+        header: 'Customer Name',
+        size: 100,
+      },
+      {
+        accessorKey: 'address', //normal accessorKey
+        header: 'Registration',
+        size: 100,
+      },
+      {
+        accessorKey: 'CNIC',
+        header: 'Contact',
+        size: 100,
+      },
+      {
+        accessorKey: 'CNIC',
+        header: 'Contact Person',
+        size: 100,
+      },
+      {
+        accessorKey: 'name.lastName',
+        header: 'Alert',
+        size: 100,
+      },
+      {
+        accessorKey: 'Role',
+        header: 'Day/Time',
+        size: 100,
+      },
+      {
+        accessorKey: 'Role',
+        header: 'Remarks',
+        size: 100,
+      },
+      {
+        accessorKey: 'CNIC',
+        header: 'Representative',
+        size: 100,
+      },
+    ],
+    [],
+  );
+
+  const table = useMaterialReactTable({
+    columns,
+    data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    muiTableHeadCellProps: {
+      //simple styling with the `sx` prop, works just like a style prop in this example
+      sx: {
+        fontWeight: 'bold',
+        fontSize: '12px',
+        border: '1px solid #e0e0e0',
+        color: "black"
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        fontSize: "8px"
+      }
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        fontSize: "11px",
+        borderRight: '2px solid #e0e0e0', //add a border between columns
+      },
+    }
+  });
   
   return (
     <div>
@@ -111,134 +233,7 @@ export default function DataLogSuperAdmin() {
           {/* Data Logs  */}
           <div className='m-2 bg-white mt-4'>
             <h1 className='text-xl font-semibold bg-black text-white p-2 '> Data Log</h1>
-            <div class="flex flex-col">
-              <div class="overflow-x-auto">
-                <div class="py-2 inline-block min-w-full my-3 mx-1">
-                  <div class="overflow-x-auto ">
-                    <table class="min-w-full">
-                      <thead class="bg-gray-300 border">
-                        <tr>
-                          <th scope="col" class="text-xs font-medium text-gray-900  p-2 text-start border-2 border-gray-200">
-                            Alert
-                          </th>
-                          <th scope="col" class="text-xs font-medium text-gray-900  p-2 text-start border-2 border-gray-200">
-                            Customer Name
-                          </th>
-                          <th scope="col" class="text-xs font-medium text-gray-900  p-2 text-start border-2 border-gray-200">
-                            Registration #
-                          </th>
-                          <th scope="col" class="text-xs font-medium text-gray-900  p-2 text-start border-2 border-gray-200">
-                            Contact Person
-                          </th>
-                          <th scope="col" class="text-xs font-medium text-gray-900  p-2 text-start border-2 border-gray-200">
-                            Date / Time
-                          </th>
-                          <th scope="col" class="text-xs font-medium text-gray-900  p-2 text-start border-2 border-gray-200">
-                            Remarks
-                          </th>
-                          <th scope="col" class="text-xs font-medium text-gray-900  p-2 text-start border-2 border-gray-200">
-                            Contact
-                          </th>
-                          <th scope="col" class="text-xs font-medium text-gray-900  p-2 text-start border-2 border-gray-200">
-                            Representative
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="bg-white border">
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200"> JU-7025</td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            27684
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            O63705
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            Hino Pak /  Truck
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">Blue</td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            1995
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            manual
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            no
-                          </td>
-                        </tr>
-                        <tr class="bg-white border">
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200"> JU-7025</td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            27684
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            O63705
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            Hino Pak /  Truck
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">Blue</td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            1995
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            manual
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            no
-                          </td>
-                        </tr>
-                        <tr class="bg-white border">
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200"> JU-7025</td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            27684
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            O63705
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            Hino Pak /  Truck
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">Blue</td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            1995
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            manual
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            no
-                          </td>
-                        </tr>
-                        <tr class="bg-white border">
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200"> JU-7025</td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            27684
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            O63705
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            Hino Pak /  Truck
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">Blue</td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            1995
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            manual
-                          </td>
-                          <td class="text-xs text-gray-900 font-light p-2  whitespace-nowrap border border-gray-200">
-                            no
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MaterialReactTable table={table} />
           </div>
 
           {/* INformation  */}

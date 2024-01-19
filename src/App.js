@@ -1,8 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import EditProfileCSR from './Pages/CSR_Dashboard.jsx/EditProfileCSR';
 import Login from './Pages/Login';
-import HomeCSR from './Pages/CSR_Dashboard.jsx/HomeCSR'
 import HomeSuperAdmin from './Pages/SuperAdminDashboard/HomeSuperAdmin';
 import SuperAdminEditProfile from './Pages/SuperAdminDashboard/SuperAdminEditProfile';
 import AllEmployeesSuperAdmin from "./Pages/SuperAdminDashboard/AllEmployeesSuperAdmin"
@@ -12,7 +10,6 @@ import EditEmployeSuperAdmin from './Pages/SuperAdminDashboard/EditEmployeSuperA
 import AttendenceReportSuperAdmin from './Pages/SuperAdminDashboard/AttendenceReportSuperAdmin';
 import LogSuperAdmin from './Pages/SuperAdminDashboard/LogSuperAdmin';
 import VehicleInformation from './Pages/SuperAdminDashboard/VehicleInformation';
-import DataLogCSR from './Pages/CSR_Dashboard.jsx/DataLogCSR';
 import TechHome from './Pages/TechnicalDashboard.jsx/TechHome';
 import AllUserTech from './Pages/TechnicalDashboard.jsx/AllUserTech'
 import DataLogTech from './Pages/TechnicalDashboard.jsx/DataLogTech';
@@ -31,17 +28,32 @@ import AllUserSuperVisor from './Pages/SuperVisorDashboard/AllUserSuperVisor';
 import SuperVisorLogs from './Pages/SuperVisorDashboard/SuperVisorLogs';
 import EditProfileSuperVisor from './Pages/SuperVisorDashboard/EditProfileSuperVisor'
 import DataLogSuperVisor from './Pages/SuperVisorDashboard/DataLogSuperVisor';
+import InfoSuperVisor from './Pages/SuperVisorDashboard/InfoSuperVisor';
+import ComplainLogSuperVisor from './Pages/SuperVisorDashboard/ComplainLogSuperVisor';
+import UpdateTrakerSuperVisor from './Pages/SuperVisorDashboard/UpdateTrakerSuperVisor';
+import CS_Home from './Pages/CSDashboard.jsx/CS_Home'
+import AddUserCS from './Pages/CSDashboard.jsx/AddUserCS';
+import AllUserCS from './Pages/CSDashboard.jsx/AllUserCS';
+import UserInfoCS from './Pages/CSDashboard.jsx/UserInfoCS';
+import LogsCS from './Pages/CSDashboard.jsx/LogsCS';
+import ComplainCS from './Components/ComplainCS';
+import RequestCS from './Pages/CSDashboard.jsx/RequestCS';
+import HomeCRO from './Pages/CRO_Dashboard.jsx/HomeCRO';
+import EditProfileCRO from './Pages/CRO_Dashboard.jsx/EditProfileCRO';
+import CROLogs from './Pages/CRO_Dashboard.jsx/CROLogs';
+import DataLogCRO from './Pages/CRO_Dashboard.jsx/DataLogCRO'
+
 
 function App() {
   return (
     <Routes>
       <Route path='/' element={<Login/>}/>
 
-      {/* CSR Routes  */}
-      <Route path='/csr' element={<HomeCSR/>}/>
-      <Route path="/csr/updateProfile" element={<EditProfileCSR/>}/>
-      {/* <Route path="/csr/logs" element={<HomeCSR/>}/> */}
-      <Route path="/csr/dataLogs" element={<DataLogCSR/>}/>
+      {/* CRO Routes  */}
+      <Route path='/cro' element={<CROLogs/>}/>
+      <Route path="/cro/updateProfile" element={<EditProfileCRO/>}/>
+      <Route path="/cro/logs" element={<CROLogs/>}/>
+      <Route path="/cro/dataLogs" element={<DataLogCRO/>}/>
 
       {/* Super Admin Routes  */}
       <Route path='/superAdmin' element={<HomeSuperAdmin/>}/>
@@ -76,6 +88,19 @@ function App() {
       <Route path='/sv/logs' element={<SuperVisorLogs/>}/>
       <Route path='/sv/Datalog' element={<DataLogSuperVisor/>}/>
       <Route path="/sv/updateProfile" element={<EditProfileSuperVisor/>}/>
+      <Route path="/sv/userInfo/:id" element={<InfoSuperVisor/>}/>
+      <Route path="/sv/complains" element={<ComplainLogSuperVisor/>}/>
+      <Route path='/sv/updateTracker' element={<UpdateTrakerSuperVisor/>}/>
+
+
+      {/* Routes for Customer Services  */}
+      <Route path='/cs' element={<CS_Home/>}/>
+      <Route path='/cs/addUser' element={<AddUserCS/>}/>
+      <Route path='/cs/allUser' element={<AllUserCS/>}/>
+      <Route path='/cs/userInfo/:id' element={<UserInfoCS/>}/>
+      <Route path='/cs/logs' element={<LogsCS/>}/>
+      <Route path='/cs/complains' element={<ComplainCS/>}/>
+      <Route path='/cs/request' element={<RequestCS/>}/>
     </Routes>
   );
 }

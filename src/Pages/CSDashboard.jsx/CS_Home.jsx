@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import CSR_SIdebar from '../../Components/CRO_SIdebar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faUsersGear, faBook, faTruck, faEye, faExpand } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import Technical_Sidebar from '../../Components/Technical_Sidebar';
+import CS_Sidebar from '../../Components/CS_Sidebar';
 
-export default function TechHome() {
+export default function SuperVisorHome() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentDate, setCurrentDate] = useState('');
   const [currentHours, setCurrentHours] = useState('');
@@ -45,7 +44,7 @@ export default function TechHome() {
   return (
     <div className='flex h-[100vh] bg-black'>
         {isSidebarOpen && (
-        <div className="sidebar"><Technical_Sidebar /></div>
+        <div className="sidebar"><CS_Sidebar /></div>
       )}
       <div className='bg-white rounded-xl m-2 p-2 w-100 overflow-y-scroll'>
       <div className='flex justify-between m-2'>
@@ -53,28 +52,40 @@ export default function TechHome() {
         <button onClick={toggleScreen}><FontAwesomeIcon icon={faExpand} /></button>
         </div>  
         <div className='grid lg:grid-cols-3  gap-2 '>
-          <Link to="/tech/updateProfile" className=' border  p-2 flex hover:bg-gray-200'>
+          <Link to="/sv/updateProfile" className='border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
             <FontAwesomeIcon icon={faUsersGear} className='h-16 p-2' />
             <div className=' ml-3'>
               <h1 className='text-2xl text-black'>Update Profile</h1>
             </div>
           </Link>
-          <Link to="/csr/logs" className=' border  p-2 flex hover:bg-gray-200'>
+          <Link to="/sv/logs" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
             <FontAwesomeIcon icon={faBook} className='h-16 p-2' />
             <div className=' ml-3'>
               <h1 className='text-2xl text-black'>View Logs</h1>
             </div>
           </Link>
-          <div className=' border bg-gray-200  p-2'>
+          <Link to="/sv/complains" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
+            <FontAwesomeIcon icon={faBook} className='h-16 p-2' />
+            <div className=' ml-3'>
+              <h1 className='text-2xl text-black'>Complain Logs</h1>
+            </div>
+          </Link>
+          <div className='border bg-gray-200 p-2'>
             <div className='text-center'>
               <h1 className='text-3xl text-black text-center'>{currentHours}:{currentMinutes}</h1>
               <p className='text-lg font-bold text-black text-center'>{currentDate}</p>
             </div>
           </div>
-          <Link to="/tech/DataLog" className=' border  p-2 flex hover:bg-gray-200'>
+          <Link to="/sv/DataLog" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
             <FontAwesomeIcon icon={faEye} className='h-16 p-2' />
             <div className=' ml-3'>
               <h1 className='text-2xl text-black'>View Data Logs</h1>
+            </div>
+          </Link>
+          <Link to="/sv/updateTracker" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
+            <FontAwesomeIcon icon={faEye} className='h-16 p-2' />
+            <div className=' ml-3'>
+              <h1 className='text-2xl text-black'>Update Tracker</h1>
             </div>
           </Link>
         </div>
