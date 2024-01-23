@@ -50,6 +50,7 @@ import UpdateTrackerCS from './Pages/CSDashboard.jsx/UpdateTrackerCS'
 import UsersStatusSuperAdmin from './Pages/SuperAdminDashboard/UsersStatusSuperAdmin';
 import AddPayment from './Pages/SuperVisorDashboard/AddPayment';
 import RenewalSuperAdmin from './Pages/SuperAdminDashboard/RenewalSuperAdmin';
+import RenewalSuperVisor from './Pages/SuperVisorDashboard/RenewalSuperVisor';
 
 function App() {
   return (
@@ -100,7 +101,7 @@ function App() {
       <Route path="/sv/complains" element={<ComplainLogSuperVisor/>}/>
       <Route path='/sv/updateTracker' element={<UpdateTrakerSuperVisor/>}/>
       <Route path="/sv/addPayment" element={<AddPayment/>}/>
-      <Route path="/sv/renewal" element={<RenewalSuperAdmin/>}/>
+      <Route path="/sv/renewal" element={<RenewalSuperVisor/>}/>
 
 
       {/* Routes for Customer Services  */}
