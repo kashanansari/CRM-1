@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDisplay ,faUsers,faUser,faUserPlus,faWrench,faTruck,faPenToSquare,faBook,faFolderClosed,faArrowRightFromBracket} from '@fortawesome/free-solid-svg-icons';
-export default function SuperAdminSidebar() {
+export default function AdminSidebar() {
   return (
     <div>
       <div>
@@ -107,6 +107,14 @@ export default function SuperAdminSidebar() {
                   className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-white"
                 >
                 <FontAwesomeIcon icon={faBook} /> Attendence 
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/superAdmin/usersStatus"
+                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-white"
+                >
+                <FontAwesomeIcon icon={faBook} /> Employees Status 
                 </Link>
               </li>
               <li>

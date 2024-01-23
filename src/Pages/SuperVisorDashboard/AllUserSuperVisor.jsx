@@ -3,8 +3,9 @@ import {
     MaterialReactTable,
     useMaterialReactTable,
 } from 'material-react-table';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SuperVisorSidebar from '../../Components/SuperVisorSidebar';
+import { MenuItem } from '@mui/material';
 
 //nested data is ok, see accessorKeys in ColumnDef below
 const data = [
@@ -127,12 +128,16 @@ const AllUserSuperVisor = () => {
                 accessorKey: 'name.firstName', //access nested data with dot notation
                 header: 'Customer Name',
                 size: 100,
-                onClick: (row) =>  navigate("/details")
             },
             {
                 accessorKey: 'name.lastName',
                 header: 'Registration #',
-                size: 100,
+                // size: 100,
+                Cell: ({ renderedCellValue, row }) => (
+                    <Link className='text-blue-500 underline' to={`/sv/userInfo/${row.id}`}>
+                      {renderedCellValue}
+                    </Link>
+                  ),
             },
             {
                 accessorKey: 'address', //normal accessorKey
@@ -187,8 +192,8 @@ const AllUserSuperVisor = () => {
           },
           muiTableBodyRowProps: ({ row }) => ({
             onClick: (event) => {
-                navigate(`/sv/userInfo/${row.id}`)
-              console.info(event, row.id);
+                // navigate(`/sv/userInfo/${row.id}`)
+            //   console.info(event, row.id);
             },
             sx: {
               cursor: 'pointer', //you might want to change the cursor too when adding an onClick

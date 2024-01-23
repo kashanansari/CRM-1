@@ -38,11 +38,18 @@ import UserInfoCS from './Pages/CSDashboard.jsx/UserInfoCS';
 import LogsCS from './Pages/CSDashboard.jsx/LogsCS';
 import ComplainCS from './Components/ComplainCS';
 import RequestCS from './Pages/CSDashboard.jsx/RequestCS';
-import HomeCRO from './Pages/CRO_Dashboard.jsx/HomeCRO';
 import EditProfileCRO from './Pages/CRO_Dashboard.jsx/EditProfileCRO';
 import CROLogs from './Pages/CRO_Dashboard.jsx/CROLogs';
 import DataLogCRO from './Pages/CRO_Dashboard.jsx/DataLogCRO'
-
+import ServiceOrderFormCS from './Pages/CSDashboard.jsx/ServiceOrderFormCS';
+import InstallationForm from "./Pages/CSDashboard.jsx/InstallationForm"
+import NRForm from './Pages/CSDashboard.jsx/NRForm';
+import RedoForm from './Pages/CSDashboard.jsx/RedoForm';
+import EditProfileCS from './Pages/CSDashboard.jsx/EditProfileCS';
+import UpdateTrackerCS from './Pages/CSDashboard.jsx/UpdateTrackerCS'
+import UsersStatusSuperAdmin from './Pages/SuperAdminDashboard/UsersStatusSuperAdmin';
+import AddPayment from './Pages/SuperVisorDashboard/AddPayment';
+import RenewalSuperAdmin from './Pages/SuperAdminDashboard/RenewalSuperAdmin';
 
 function App() {
   return (
@@ -54,6 +61,7 @@ function App() {
       <Route path="/cro/updateProfile" element={<EditProfileCRO/>}/>
       <Route path="/cro/logs" element={<CROLogs/>}/>
       <Route path="/cro/dataLogs" element={<DataLogCRO/>}/>
+      <Route path="/cro/updateProfile" element={<EditProfileCRO/>}/>
 
       {/* Super Admin Routes  */}
       <Route path='/superAdmin' element={<HomeSuperAdmin/>}/>
@@ -65,7 +73,7 @@ function App() {
       <Route path='/superAdmin/logs' element={<LogSuperAdmin/>}/>
       <Route path='/superAdmin/attendence' element={<AttendenceReportSuperAdmin/>}/>
       <Route path='/superAdmin/vehiclesInfo/:id' element={<VehicleInformation/>}/>
-
+      <Route path='/superAdmin/usersStatus' element={<UsersStatusSuperAdmin/>}/>
 
       {/* Technical Routes  */}
       <Route path='/tech' element={<TechHome/>}/>
@@ -91,6 +99,8 @@ function App() {
       <Route path="/sv/userInfo/:id" element={<InfoSuperVisor/>}/>
       <Route path="/sv/complains" element={<ComplainLogSuperVisor/>}/>
       <Route path='/sv/updateTracker' element={<UpdateTrakerSuperVisor/>}/>
+      <Route path="/sv/addPayment" element={<AddPayment/>}/>
+      <Route path="/sv/renewal" element={<RenewalSuperAdmin/>}/>
 
 
       {/* Routes for Customer Services  */}
@@ -101,6 +111,12 @@ function App() {
       <Route path='/cs/logs' element={<LogsCS/>}/>
       <Route path='/cs/complains' element={<ComplainCS/>}/>
       <Route path='/cs/request' element={<RequestCS/>}/>
+      <Route path='/cs/serviceForm' element={<ServiceOrderFormCS/>}/>
+      <Route path='/cs/installForm' element={<InstallationForm/>}/>
+      <Route path='/cs/NRForm' element={<NRForm/>}/>
+      <Route path='/cs/RedoForm' element={<RedoForm/>}/>
+      <Route path='/cs/updateProfile' element={<EditProfileCS/>}/>
+      <Route path='/cs/updateTracker' element={<UpdateTrackerCS/>}/>
     </Routes>
   );
 }

@@ -52,19 +52,13 @@ export default function SuperVisorHome() {
         <button onClick={toggleScreen}><FontAwesomeIcon icon={faExpand} /></button>
         </div>  
         <div className='grid lg:grid-cols-3  gap-2 '>
-          <Link to="/sv/updateProfile" className='border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
-            <FontAwesomeIcon icon={faUsersGear} className='h-16 p-2' />
-            <div className=' ml-3'>
-              <h1 className='text-2xl text-black'>Update Profile</h1>
-            </div>
-          </Link>
-          <Link to="/sv/logs" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
+          <Link to="/cs/logs" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
             <FontAwesomeIcon icon={faBook} className='h-16 p-2' />
             <div className=' ml-3'>
               <h1 className='text-2xl text-black'>View Logs</h1>
             </div>
           </Link>
-          <Link to="/sv/complains" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
+          <Link to="/cs/complains" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
             <FontAwesomeIcon icon={faBook} className='h-16 p-2' />
             <div className=' ml-3'>
               <h1 className='text-2xl text-black'>Complain Logs</h1>
@@ -76,13 +70,13 @@ export default function SuperVisorHome() {
               <p className='text-lg font-bold text-black text-center'>{currentDate}</p>
             </div>
           </div>
-          <Link to="/sv/DataLog" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
+          <Link to="/cs/allUser" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
             <FontAwesomeIcon icon={faEye} className='h-16 p-2' />
             <div className=' ml-3'>
-              <h1 className='text-2xl text-black'>View Data Logs</h1>
+              <h1 className='text-2xl text-black'>View All User</h1>
             </div>
           </Link>
-          <Link to="/sv/updateTracker" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
+          <Link to="/cs/updateTracker" className=' border  p-2 flex rounded-2 bg-gray-300 shadow-lg hover:bg-gray-400'>
             <FontAwesomeIcon icon={faEye} className='h-16 p-2' />
             <div className=' ml-3'>
               <h1 className='text-2xl text-black'>Update Tracker</h1>

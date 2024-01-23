@@ -56,6 +56,66 @@ export default function SuperVisorSidebar() {
                             </Link>
                         </li>
                         <li>
+                <details className="group [&_summary::-webkit-details-marker]:hidden">
+                  <summary
+                    className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500  hover:text-white"
+                  >
+                    <span className="text-sm font-medium"><FontAwesomeIcon icon={faUser} /> Forms </span>
+
+                    <span className="shrink-0 transition duration-300 group-open:-rotate-180">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </summary>
+
+                  <ul className="mt-2 space-y-1 px-4">
+                    <li>
+                      <Link
+                        to="/cs/serviceForm"
+                        className="block rounded-lg px-2 py-2 text-sm font-medium text-gray-500  hover:text-white"
+                      >
+                      <FontAwesomeIcon icon={faUserPlus} />  service Order Form 
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        to="/cs/installForm"
+                        className="block rounded-lg px-2 py-2 text-sm font-medium text-gray-500  hover:text-white"
+                      >
+                       <FontAwesomeIcon icon={faUsers} /> Intallation Form 
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/cs/NRForm"
+                        className="block rounded-lg px-2 py-2 text-sm font-medium text-gray-500  hover:text-white"
+                      >
+                       <FontAwesomeIcon icon={faWrench} /> N/R No Contact
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/cs/RedoForm"
+                        className="block rounded-lg px-2 py-2 text-sm font-medium text-gray-500  hover:text-white"
+                      >
+                       <FontAwesomeIcon icon={faWrench} /> N/R Redo Required
+                      </Link>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+                        <li>
                             <Link
                                 to="/cs/request"
                                 className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-white"
@@ -73,7 +133,7 @@ export default function SuperVisorSidebar() {
                         </li>
                         <li>
                             <Link
-                                to="/sv/updateProfile"
+                                to="/cs/updateProfile"
                                 className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-white"
                             >
                                 Update Profile

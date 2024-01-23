@@ -38,8 +38,6 @@ export default function CROLogs() {
                     </button>
                     <button className={`mr-1 text-xs font-bold  bg-white p-2 ${selectedLog === 'Redo' ? 'bg-gray-500' : ''}`}
                         onClick={() => handleLogButtonClick('Redo')}>Redo </button>
-                    <button className={`mr-1 text-xs font-bold  bg-white p-2 ${selectedLog === 'Renewal' ? 'bg-gray-500' : ''}`}
-                        onClick={() => handleLogButtonClick('Renewal')}>Renewal</button>
                     <button className={`mr-1 text-xs font-bold  bg-white p-2 ${selectedLog === 'NR' ? 'bg-gray-500' : ''}`}
                         onClick={() => handleLogButtonClick('NR')}>N/R (No Report)</button>
                 </div>
@@ -47,7 +45,6 @@ export default function CROLogs() {
                 {selectedLog === 'complain' && <ComplainLogSuperAdmin />}
                 {selectedLog === 'NR' && <NRSuperAdmin />}
                 {selectedLog === 'Redo' && <RedoSuperAdmin />}
-                {selectedLog === 'Renewal' && <RenewalLogSuperAdmin />}
             </div>
         </div>
     )

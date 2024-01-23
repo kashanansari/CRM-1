@@ -224,7 +224,7 @@ const ComplainCS = () => {
                         <span className='text-xl font-bold  text-black '>Total Records : </span><sapn className="text-lg">1000</sapn>
                     </div>
                     <div >
-                        <Link to='/cs/logs' className='theme_btn_md rounded-0'>Add Complain</Link>
+                        <Link to='/cs/logs' className='theme_btn_md p-2'>Add Complain</Link>
                     </div>
                 </div>
                 <div className=' my-3'> <MaterialReactTable table={table} /> </div>

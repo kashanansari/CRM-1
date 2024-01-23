@@ -65,6 +65,14 @@ export default function SuperVisorSidebar() {
                         </li>
                         <li>
                             <Link
+                                to="/sv/renewal"
+                                className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-white"
+                            >
+                               Renewal
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
                                 to="/sv/updateProfile"
                                 className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-white"
                             >
