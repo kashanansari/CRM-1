@@ -15,7 +15,7 @@ const data = [
         },
         address: '261 Erdman Ford',
         city: 'East Daphne',
-        state: 'Kentucky',
+        status: 'Kentucky',
     },
     {
         name: {
@@ -24,7 +24,7 @@ const data = [
         },
         address: '769 Dominic Grove',
         city: 'Columbus',
-        state: 'Ohio',
+        status: 'Ohio',
     },
     {
         name: {
@@ -33,7 +33,7 @@ const data = [
         },
         address: '566 Brakus Inlet',
         city: 'South Linda',
-        state: 'West Virginia',
+        status: 'West Virginia',
     },
     {
         name: {
@@ -42,7 +42,7 @@ const data = [
         },
         address: '722 Emie Stream',
         city: 'Lincoln',
-        state: 'Nebraska',
+        status: 'Nebraska',
     },
     {
         name: {
@@ -51,7 +51,7 @@ const data = [
         },
         address: '32188 Larkin Turnpike',
         city: 'Charleston',
-        state: 'South Carolina',
+        status: 'South Carolina',
     },
     {
         name: {
@@ -60,7 +60,7 @@ const data = [
         },
         address: '261 Erdman Ford',
         city: 'East Daphne',
-        state: 'Kentucky',
+        status: 'Approved',
     },
     {
         name: {
@@ -69,7 +69,7 @@ const data = [
         },
         address: '769 Dominic Grove',
         city: 'Columbus',
-        state: 'Ohio',
+        status: 'Approved',
     },
     {
         name: {
@@ -78,7 +78,7 @@ const data = [
         },
         address: '566 Brakus Inlet',
         city: 'South Linda',
-        state: 'West Virginia',
+        status: 'West Virginia',
     },
     {
         name: {
@@ -87,7 +87,7 @@ const data = [
         },
         address: '722 Emie Stream',
         city: 'Lincoln',
-        state: 'Nebraska',
+        status: 'Approved',
     },
     {
         name: {
@@ -96,7 +96,7 @@ const data = [
         },
         address: '32188 Larkin Turnpike',
         city: 'Charleston',
-        state: 'South Carolina',
+        status: 'Approved',
     },
 ];
 
@@ -120,7 +120,6 @@ const VehicleSuperAdmin = () => {
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
-    //should be memoized or stable
     const columns = useMemo(
         () => [
             {
@@ -160,19 +159,34 @@ const VehicleSuperAdmin = () => {
                 size: 100,
             },
             {
-                accessorKey: 'state',
+                accessorKey: 'status',
                 header: 'Operation Status',
                 size: 100,
+                Cell: ({ value }) => (
+                    <span style={{ color: value === 'Approved' ? 'green' : 'black' }}>
+                      {value === 'Approved' ? 'Completed' : 'Incompleted'}
+                    </span>
+                  ),
             },
             {
-                accessorKey: 'state',
-                header: 'Technical Status	',
+                accessorKey: 'status',
+                header: 'Technical Status',
                 size: 100,
+                Cell: ({ value }) => (
+                    <span style={{ color: value === 'Approved' ? 'green' : 'black' }}>
+                    {value === 'Approved' ? 'Completed' : 'Incompleted'}
+                  </span>
+                ),
             },
             {
-                accessorKey: 'state',
+                accessorKey: 'status',
                 header: 'Security Status',
                 size: 100,
+                Cell: ({ value }) => (
+                    <span style={{ color: value === 'Approved' ? 'green' : 'black' }}>
+                    {value === 'Approved' ? 'Completed' : 'Incompleted'}
+                  </span>
+                ),
             },
             {
                 accessorKey: 'state',
