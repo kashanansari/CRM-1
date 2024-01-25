@@ -1,12 +1,86 @@
 import React, { useState } from 'react'
 import SuperAdminSidebar from '../../Components/SuperAdminSidebar';
+import { useEffect } from 'react';
 
 export default function AddEmployessSuperAdmin() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [roles, setRoles] = useState([]);
+    const [id, setId] = useState();
+
+    const [newEmployee, setnewEmployee] = useState({
+        emp_name: "",
+        em_loginid: "",
+        designation: "",
+        contact:"",
+        cnic:"",
+        role:"",
+        image:""
+    });
+
+    let name, value
+    const getUserdata = (e) => {
+        name = e.target.name;
+        value = e.target.value;
+        setnewEmployee({ ...newEmployee, [name]: value });
+    }
+    console.log(newEmployee);
+
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+
+    const getRoles = async () => {
+        const res = await fetch("http://127.0.0.1:8000/api/roles");
+        const response = await res.json();
+        console.log(response.data)
+        setRoles(response.data)
+    }
+
+    const GetNewId = async () => {
+        const res = await fetch("http://127.0.0.1:8000/api/add_employees");
+        const response = await res.json();
+        setId(response.Emp_id)
+    }
+
+    const sendData = async (e) => {
+        e.preventDefault();
+        const { emp_name, em_loginid, designation ,contact , cnic ,role , image } = newEmployee;
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                emp_name,
+                em_loginid,
+                designation,
+                contact,
+                cnic,
+                role,
+                image,
+            }),
+        };
+        if (emp_name && em_loginid && designation && contact && cnic && role && image) {
+            console.log("Options:", options);
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/create_emp",
+                options
+            );
+            console.log("Response:", response);
+            if (response.ok) {
+                alert("your response has been recorded");
+            }
+        } else {
+            alert("Please Fill All Feilds");
+        }
+    };
+
+    useEffect(() => {
+        getRoles();
+        GetNewId()
+    }, []);
+
     return (
         <div>
             <div className='flex h-[100vh] bg-black'>
@@ -24,45 +98,45 @@ export default function AddEmployessSuperAdmin() {
                                             <h2 class="text-uppercase font-bold text-2xl text-center mb-5">Register A New Employee </h2>
                                             <form>
                                                 <label class="form-label" for="form3Example1cg">Employee Id</label>                                                    <div class="form-outline mb-4">
-                                                    <input type="text" id="form3Example1cg" class=" form-control form-control" />
+                                                    <input required name="emp_name" onChange={getUserdata} type="text" id="form3Example1cg" value={id} class="form-control form-control cursor-not-allowed" readOnly />
                                                 </div>
 
                                                 <label class="form-label" for="form3Example3cg">Employee Name</label>                                                    <div class="form-outline mb-4">
-                                                    <input type="text" id="form3Example3cg" class="form-control form-control" />
+                                                    <input required name="emp_name" onChange={getUserdata} type="text" id="form3Example3cg" class="form-control form-control" />
                                                 </div>
 
                                                 <label class="form-label" for="form3Example4cg">Password</label>                                                    <div class="form-outline mb-4">
-                                                    <input type="password" id="form3Example4cg" class="form-control form-control" />
+                                                    <input required name="password" onChange={getUserdata} type="password" id="form3Example4cg" class="form-control form-control" />
                                                 </div>
 
                                                 <label class="form-label" for="form3Example4cdg">Employee Login ID</label>                                                    <div class="form-outline mb-4">
-                                                    <input type="text" id="form3Example4cdg" class="form-control form-control" />
+                                                    <input required name="em_loginid" onChange={getUserdata} type="text" id="form3Example4cdg" class="form-control form-control" />
                                                 </div>
                                                 <label class="form-label" for="form3Example4cdg">Designation</label>                                                    <div class="form-outline mb-4">
-                                                    <input type="password" id="form3Example4cdg" class="form-control form-control" />
+                                                    <input required name="designation" onChange={getUserdata} type="text" id="form3Example4cdg" class="form-control form-control" />
                                                 </div>
                                                 <label class="form-label" for="form3Example4cdg">Contact </label>                                                    <div class="form-outline mb-4">
-                                                    <input type="password" id="form3Example4cdg" class="form-control form-control" />
+                                                    <input required name="contact" onChange={getUserdata} type="number" id="form3Example4cdg" class="form-control form-control" />
                                                 </div>
                                                 <label class="form-label" for="form3Example1cg">CNIC </label>                                                    <div class="form-outline mb-4">
-                                                    <input type="text" id="form3Example1cg" class=" form-control form-control" />
+                                                    <input required name="cnic" onChange={getUserdata} type="text" id="form3Example1cg" class=" form-control form-control" />
                                                 </div>
-                                                <label class="form-label" for="form3Example1cg">Select One Role</label>                                                  
-                                                  <div class="form-outline mb-4 w-100">
-                                                    <select aria-label=" form-control w-100">
-                                                        <option value="1">CRO </option>
-                                                        <option value="2">Technichain</option>
-                                                        <option value="3">Super Visor</option>
-                                                        <option value="4">Web Track Issue </option>
-                                                        <option value="5">Wrong Location</option>
-                                                    </select>
-                                                </div>
+                                                <label className="form-label" htmlFor="form3Example1cg">Roles</label>
+                                                <select name="role" onChange={getUserdata} id="form3Example1cg" className="form-control p-2">
+                                                    {roles.map((roleGroup, index) => {
+                                                        const roles = roleGroup.split(',').map(role => role.trim());
+
+                                                        return roles.map((role, roleIndex) => (
+                                                            <option key={`${index}-${roleIndex}`} value={role}>{role}</option>
+                                                        ));
+                                                    })}
+                                                </select>
                                                 <label class="form-label" for="form3Example1cg">Image </label>                                                    <div class="form-outline mb-4">
-                                                    <input type="image" className='border w-100 p-2 rounded'/>
+                                                    <input required name="image" onChange={getUserdata} type="file" className='border w-100 p-2 rounded' />
                                                 </div>
                                                 <div class="d-flex justify-content-center">
                                                     <button type="button"
-                                                        class=" w-100 btn-lg theme_btn_md p-3 ">Register</button>
+                                                        class=" w-100 btn-lg theme_btn_md p-3 " onClick={sendData}>Register</button>
                                                 </div>
                                             </form>
 

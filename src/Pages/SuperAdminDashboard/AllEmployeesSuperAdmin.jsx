@@ -70,18 +70,18 @@ const AllEmployeesSuperAdmin = () => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/allemp');
+      const res = await fetch("http://127.0.0.1:8000/api/completedetails");
       if (!res.ok) {
-        throw new Error(`Failed to fetch data. Status: ${res.status}`);
+          throw new Error(`Failed to fetch data. Status: ${res}`);
       }
-  
+
       const response = await res.json();
-      console.log("data>>", response);
+      console.log("data>>", response.data);
       setData(response.data);
       setCount(response.count)
-    } catch (error) {
+  } catch (error) {
       console.error("Error fetching data:", error);
-    }
+  }
   };
   
 
