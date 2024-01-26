@@ -6,84 +6,30 @@ import {
 import SuperAdminSidebar from '../../Components/SuperAdminSidebar';
 import { useEffect } from 'react';
 
-//nested data is ok, see accessorKeys in ColumnDef below
-// const data = [
-//   {
-//     name: {
-//       firstName: 'John',
-//       lastName: 'Doe',
-//     },
-//     address: '261 Erdman Ford',
-//     city: 'East Daphne',
-//     state: 'Kentucky',
-//   },
-//   {
-//     name: {
-//       firstName: 'Jane',
-//       lastName: 'Doe',
-//     },
-//     address: '769 Dominic Grove',
-//     city: 'Columbus',
-//     state: 'Ohio',
-//   },
-//   {
-//     name: {
-//       firstName: 'Joe',
-//       lastName: 'Doe',
-//     },
-//     address: '566 Brakus Inlet',
-//     city: 'South Linda',
-//     state: 'West Virginia',
-//   },
-//   {
-//     name: {
-//       firstName: 'Kevin',
-//       lastName: 'Vandy',
-//     },
-//     address: '722 Emie Stream',
-//     city: 'Lincoln',
-//     state: 'Nebraska',
-//   },
-//   {
-//     name: {
-//       firstName: 'Joshua',
-//       lastName: 'Rolluffs',
-//     },
-//     address: '32188 Larkin Turnpike',
-//     city: 'Charleston',
-//     state: 'South Carolina',
-//   },
-// ];
-
-
-
-
 const AllEmployeesSuperAdmin = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [data,setData ]=useState([]);
-  const [count,setCount]=useState([]);
+  const [data, setData] = useState([]);
+  const [count, setCount] = useState([]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-
   const fetchData = async () => {
     try {
       const res = await fetch("http://127.0.0.1:8000/api/completedetails");
       if (!res.ok) {
-          throw new Error(`Failed to fetch data. Status: ${res}`);
+        throw new Error(`Failed to fetch data. Status: ${res}`);
       }
 
       const response = await res.json();
       console.log("data>>", response.data);
       setData(response.data);
       setCount(response.count)
-  } catch (error) {
+    } catch (error) {
       console.error("Error fetching data:", error);
-  }
+    }
   };
-  
 
   //should be memoized or stable
  const columns = useMemo(
