@@ -5,7 +5,7 @@ import {
 } from 'material-react-table';
 import SuperAdminSidebar from '../../Components/SuperAdminSidebar';
 
-const AllEmployeesSuperAdmin = () => {
+const AddEmployessSuperAdmin = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [data, setData] = useState([]);
   const [count, setCount] = useState([]);
@@ -148,4 +148,4 @@ const AllEmployeesSuperAdmin = () => {
   );
 };
 
-export default AllEmployeesSuperAdmin;
+export default AddEmployessSuperAdmin;
