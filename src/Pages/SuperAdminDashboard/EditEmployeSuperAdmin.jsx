@@ -3,8 +3,8 @@ import SuperAdminSidebar from '../../Components/SuperAdminSidebar';
 
 export default function EditEmployeSuperAdmin() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-    const toggleSidebar = () => {
+    
+      const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
     return (
