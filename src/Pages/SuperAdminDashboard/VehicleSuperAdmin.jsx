@@ -75,36 +75,6 @@ const VehicleSuperAdmin = () => {
                 header: 'CNIC',
                 size: 100,
             },
-            // {
-            //     accessorKey: 'form_status',
-            //     header: 'Operation Status',
-            //     size: 100,
-            //     Cell: ({ renderedCellValue }) => (
-            //         <span style={{ color: renderedCellValue === 'approved' ? 'green' : 'black' }}>
-            //             {renderedCellValue === 'approved' ? 'Completed' : 'Incompleted'}
-            //         </span>
-            //     ),
-            // },
-            // {
-            //     accessorKey: 'form_status',
-            //     header: 'Technical Status',
-            //     size: 100,
-            //     Cell: ({ renderedCellValue }) => (
-            //         <span style={{ color: renderedCellValue === 'declined' ? 'black' : 'green' }}>
-            //             {renderedCellValue === 'declined' ? 'Incompleted' : 'Completed'}
-            //         </span>
-            //     ),
-            // },
-            // {
-            //     accessorKey: 'form_status',
-            //     header: 'Security Status',
-            //     size: 100,
-            //     Cell: ({ renderedCellValue }) => (
-            //         <span style={{ color: renderedCellValue === 'approved' ? 'green' : 'black' }}>
-            //             {renderedCellValue === 'approved' ? 'Completed' : 'Incompleted'}
-            //         </span>
-            //     )
-            // },
             {
                 accessorKey: 'sales_person',
                 header: 'Sales Person',

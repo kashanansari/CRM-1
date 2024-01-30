@@ -6,136 +6,51 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import CS_Sidebar from '../Components/CS_Sidebar';
 
-//nested data is ok, see accessorKeys in ColumnDef below
-const data = [
-    {
-        name: {
-            firstName: 'John',
-            lastName: 'Doe',
-        },
-        address: '261 Erdman Ford',
-        city: 'East Daphne',
-        state: 'Kentucky',
-    },
-    {
-        name: {
-            firstName: 'Jane',
-            lastName: 'Doe',
-        },
-        address: '769 Dominic Grove',
-        city: 'Columbus',
-        state: 'Ohio',
-    },
-    {
-        name: {
-            firstName: 'Joe',
-            lastName: 'Doe',
-        },
-        address: '566 Brakus Inlet',
-        city: 'South Linda',
-        state: 'West Virginia',
-    },
-    {
-        name: {
-            firstName: 'Kevin',
-            lastName: 'Vandy',
-        },
-        address: '722 Emie Stream',
-        city: 'Lincoln',
-        state: 'Nebraska',
-    },
-    {
-        name: {
-            firstName: 'Joshua',
-            lastName: 'Rolluffs',
-        },
-        address: '32188 Larkin Turnpike',
-        city: 'Charleston',
-        state: 'South Carolina',
-    },
-    {
-        name: {
-            firstName: 'John',
-            lastName: 'Doe',
-        },
-        address: '261 Erdman Ford',
-        city: 'East Daphne',
-        state: 'Kentucky',
-    },
-    {
-        name: {
-            firstName: 'Jane',
-            lastName: 'Doe',
-        },
-        address: '769 Dominic Grove',
-        city: 'Columbus',
-        state: 'Ohio',
-    },
-    {
-        name: {
-            firstName: 'Joe',
-            lastName: 'Doe',
-        },
-        address: '566 Brakus Inlet',
-        city: 'South Linda',
-        state: 'West Virginia',
-    },
-    {
-        name: {
-            firstName: 'Kevin',
-            lastName: 'Vandy',
-        },
-        address: '722 Emie Stream',
-        city: 'Lincoln',
-        state: 'Nebraska',
-    },
-    {
-        name: {
-            firstName: 'Joshua',
-            lastName: 'Rolluffs',
-        },
-        address: '32188 Larkin Turnpike',
-        city: 'Charleston',
-        state: 'South Carolina',
-    },
-];
+
 
 const ComplainCS = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const navigate = useNavigate();
+    const [data, setData] = useState([]);
+    const [count, setCount] = useState([]);
 
-    // const [data,setData]=useState()
-    // const fetchData = async () => {
-    //     try {
-    //       const response = await fetch('your-api-endpoint');
-    //       const result = await response.json();
-    //       setData(result);
-    //     } catch (error) {
-    //       console.error('Error fetching data:', error);
-    //     }
-    //   };
+    const fetchData = async () => {
+        try {
+          const res = await fetch("http://127.0.0.1:8000/api/allcomplain");
+          if (!res.ok) {
+            throw new Error(`Failed to fetch data. Status: ${res}`);
+          }
+    
+          const response = await res.json();
+          console.log("data>>", response.Pending_complains);
+          setData(response.Pending_complains);
+          setCount(response.count)
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
 
 
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
-    //should be memoized or stable
+    
     const columns = useMemo(
         () => [
             {
-                accessorKey: 'name.firstName', //access nested data with dot notation
+                accessorKey: 'customer_name', //access nested data with dot notation
                 header: 'Customer Name',
                 size: 100,
                 onClick: (row) => navigate("/details")
             },
             {
-                accessorKey: 'name.lastName',
+                accessorKey: 'reg_no',
                 header: 'Registration #',
                 size: 100,
             },
             {
-                accessorKey: 'address', //normal accessorKey
+                accessorKey: 'nature_of_complain', //normal accessorKey
                 header: 'Complain',
                 size: 100,
             },
@@ -145,17 +60,17 @@ const ComplainCS = () => {
                 size: 100,
             },
             {
-                accessorKey: 'state',
+                accessorKey: 'created_at',
                 header: 'Date / Time',
                 size: 100,
             },
             {
-                accessorKey: 'state',
+                accessorKey: 'remarks',
                 header: 'Remarks',
                 size: 100,
             },
             {
-                accessorKey: 'state',
+                accessorKey: 'emp_name',
                 header: 'Represtative',
                 size: 100,
             },
@@ -165,8 +80,8 @@ const ComplainCS = () => {
                 size: 100,
             },
             {
-                accessorKey: 'state',
-                header: ' Status	',
+                accessorKey: 'Status',
+                header: ' Status',
                 size: 100,
             },
         ],
@@ -175,18 +90,21 @@ const ComplainCS = () => {
 
     const table = useMaterialReactTable({
         columns,
-        data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+        data,
+        enableColumnActions: false,
+        enableColumnFilters: false,
+        enableSorting: false,
         muiTableHeadCellProps: {
-            //simple styling with the `sx` prop, works just like a style prop in this example
             sx: {
                 fontWeight: 'bold',
                 fontSize: '12px',
-                backgroundColor: "#9CA3AF",
+                border: '1px solid #e0e0e0',
                 color: "black"
             },
         },
         muiTableBodyRowProps: ({ row }) => ({
             onClick: (event) => {
+                navigate(`/superAdmin/vehiclesInfo/${row.id}`)
                 console.info(event, row.id);
             },
             sx: {
@@ -206,9 +124,10 @@ const ComplainCS = () => {
         }
     });
 
+    
 
     useEffect(() => {
-        // fetchData();
+        fetchData();
     }, []);
 
     return (
