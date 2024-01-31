@@ -13,6 +13,10 @@ const AllUserSuperVisor = () => {
     const [data, setData] = useState([]);
     const [count,setCount ]=useState()
 
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
     const fetchData = async () => {
         try {
             const res = await fetch("http://127.0.0.1:8000/api/completedetails");
@@ -29,9 +33,7 @@ const AllUserSuperVisor = () => {
         }
     };
     
-    const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
+    
     const columns = useMemo(
         () => [
             {
@@ -74,36 +76,36 @@ const AllUserSuperVisor = () => {
                 header: 'CNIC',
                 size: 100,
             },
-            {
-                accessorKey: 'form_status',
-                header: 'Operation Status',
-                size: 100,
-                Cell: ({ renderedCellValue }) => (
-                    <span style={{ color: renderedCellValue === 'approved' ? 'green' : 'black' }}>
-                        {renderedCellValue === 'approved' ? 'Completed' : 'Incompleted'}
-                    </span>
-                ),
-            },
-            {
-                accessorKey: 'form_status',
-                header: 'Technical Status',
-                size: 100,
-                Cell: ({ renderedCellValue }) => (
-                    <span style={{ color: renderedCellValue === 'declined' ? 'black' : 'green' }}>
-                        {renderedCellValue === 'declined' ? 'Incompleted' : 'Completed'}
-                    </span>
-                ),
-            },
-            {
-                accessorKey: 'form_status',
-                header: 'Security Status',
-                size: 100,
-                Cell: ({ renderedCellValue }) => (
-                    <span style={{ color: renderedCellValue === 'approved' ? 'green' : 'black' }}>
-                        {renderedCellValue === 'approved' ? 'Completed' : 'Incompleted'}
-                    </span>
-                )
-            },
+            // {
+            //     accessorKey: 'form_status',
+            //     header: 'Operation Status',
+            //     size: 100,
+            //     Cell: ({ renderedCellValue }) => (
+            //         <span style={{ color: renderedCellValue === 'approved' ? 'green' : 'black' }}>
+            //             {renderedCellValue === 'approved' ? 'Completed' : 'Incompleted'}
+            //         </span>
+            //     ),
+            // },
+            // {
+            //     accessorKey: 'form_status',
+            //     header: 'Technical Status',
+            //     size: 100,
+            //     Cell: ({ renderedCellValue }) => (
+            //         <span style={{ color: renderedCellValue === 'declined' ? 'black' : 'green' }}>
+            //             {renderedCellValue === 'declined' ? 'Incompleted' : 'Completed'}
+            //         </span>
+            //     ),
+            // },
+            // {
+            //     accessorKey: 'form_status',
+            //     header: 'Security Status',
+            //     size: 100,
+            //     Cell: ({ renderedCellValue }) => (
+            //         <span style={{ color: renderedCellValue === 'approved' ? 'green' : 'black' }}>
+            //             {renderedCellValue === 'approved' ? 'Completed' : 'Incompleted'}
+            //         </span>
+            //     )
+            // },
             {
                 accessorKey: 'sales_person',
                 header: 'Sales Person',
@@ -134,12 +136,11 @@ const AllUserSuperVisor = () => {
         },
         muiTableBodyRowProps: ({ row }) => ({
             onClick: (event) => {
-                navigate(`/superAdmin/vehiclesInfo/${row.id}`)
                 console.info(event, row.id);
             },
-            sx: {
-                cursor: 'pointer', //you might want to change the cursor too when adding an onClick
-            },
+            // sx: {
+            //     cursor: 'pointer', //you might want to change the cursor too when adding an onClick
+            // },
         }),
         muiTableBodyProps: {
             sx: {

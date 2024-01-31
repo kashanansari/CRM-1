@@ -51,7 +51,7 @@
     /* Update the styles for the popup */
     background-color: #fff;
     justify-content: center;
-    padding: 30px; /* Increase the padding for more space */
+    padding: 30px; 
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     max-width: 500px; /* Set a maximum width for the popup */

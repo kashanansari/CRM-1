@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CS_Sidebar from '../../Components/CS_Sidebar';
 import DataLogSuperAdmin from '../SuperAdminDashboard/DataLogSuperAdmin';
 import ComplainLogSuperAdmin from '../SuperAdminDashboard/ComplainLogSuperAdmin';
@@ -7,7 +7,7 @@ import RedoSuperAdmin from '../SuperAdminDashboard/RedoSuperAdmin';
 import RenewalLogSuperAdmin from '../SuperAdminDashboard/RenealLogSuperAdmin';
 
 export default function LogsCS() {
-    const [selectedLog, setSelectedLog] = useState('data');
+    const [selectedLog, setSelectedLog] = useState('');
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
 
@@ -18,6 +18,10 @@ export default function LogsCS() {
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+    
+    useEffect(() => {
+       setSelectedLog("data")
+      }, []);
     return (
         <div>
             <div className='flex h-[100vh] bg-black pt-0 mt-0'>

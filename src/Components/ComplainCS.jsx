@@ -14,60 +14,63 @@ const ComplainCS = () => {
     const [data, setData] = useState([]);
     const [count, setCount] = useState([]);
 
-    const fetchData = async () => {
-        try {
-          const res = await fetch("http://127.0.0.1:8000/api/allcomplain");
-          if (!res.ok) {
-            throw new Error(`Failed to fetch data. Status: ${res}`);
-          }
-    
-          const response = await res.json();
-          console.log("data>>", response.Pending_complains);
-          setData(response.Pending_complains);
-          setCount(response.count)
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-
-
-
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
     
+    const fetchData = async () => {
+        try {
+            const res = await fetch("http://127.0.0.1:8000/api/allcomplain");
+            if (!res.ok) {
+                throw new Error(`Failed to fetch data. Status: ${res}`);
+            }
+    
+            const response = await res.json();
+            console.log("data>>", response.all_complains);
+            setData(response.all_complains);
+            setCount(response.count)
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+    
+    
     const columns = useMemo(
         () => [
+            {
+                accessorKey: 'complain_id',
+                header: 'Ticker',
+                size: 80,
+            },
             {
                 accessorKey: 'customer_name', //access nested data with dot notation
                 header: 'Customer Name',
                 size: 100,
-                onClick: (row) => navigate("/details")
             },
             {
                 accessorKey: 'reg_no',
                 header: 'Registration #',
-                size: 100,
+                size: 90,
             },
             {
-                accessorKey: 'nature_of_complain', //normal accessorKey
+                accessorKey: 'nature_of_complain',
                 header: 'Complain',
                 size: 100,
             },
             {
-                accessorKey: 'city',
-                header: 'Ticker',
-                size: 100,
+                accessorKey: 'date',
+                header: 'Date',
+                size: 80,
             },
             {
-                accessorKey: 'created_at',
-                header: 'Date / Time',
-                size: 100,
+                accessorKey: 'time',
+                header: 'Time',
+                size: 80,
             },
             {
                 accessorKey: 'remarks',
                 header: 'Remarks',
-                size: 100,
+                size: 250,
             },
             {
                 accessorKey: 'emp_name',
@@ -75,19 +78,19 @@ const ComplainCS = () => {
                 size: 100,
             },
             {
-                accessorKey: 'state',
+                accessorKey: 'Status',
                 header: 'Resolved By',
                 size: 100,
             },
             {
                 accessorKey: 'Status',
-                header: ' Status',
-                size: 100,
+                header: 'Status',
+                size: 80,
             },
         ],
         [],
     );
-
+    
     const table = useMaterialReactTable({
         columns,
         data,
@@ -102,15 +105,6 @@ const ComplainCS = () => {
                 color: "black"
             },
         },
-        muiTableBodyRowProps: ({ row }) => ({
-            onClick: (event) => {
-                navigate(`/superAdmin/vehiclesInfo/${row.id}`)
-                console.info(event, row.id);
-            },
-            sx: {
-                cursor: 'pointer', //you might want to change the cursor too when adding an onClick
-            },
-        }),
         muiTableBodyProps: {
             sx: {
                 fontSize: "8px"
@@ -123,9 +117,8 @@ const ComplainCS = () => {
             },
         }
     });
-
     
-
+    
     useEffect(() => {
         fetchData();
     }, []);
@@ -140,7 +133,7 @@ const ComplainCS = () => {
                 <div className='flex justify-between mt-4'>
                     <div >
                         <h1 className='text-4xl font-bold text-uppercase text-black'>Complain Log</h1>
-                        <span className='text-xl font-bold  text-black '>Total Records : </span><sapn className="text-lg">1000</sapn>
+                        <span className='text-xl font-bold  text-black '>Total Records : </span><sapn className="text-lg">{count}</sapn>
                     </div>
                     <div >
                         <Link to='/cs/logs' className='theme_btn_md p-2'>Add Complain</Link>

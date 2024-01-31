@@ -51,6 +51,7 @@ import UsersStatusSuperAdmin from './Pages/SuperAdminDashboard/UsersStatusSuperA
 import AddPayment from './Pages/SuperVisorDashboard/AddPayment';
 import RenewalSuperAdmin from './Pages/SuperAdminDashboard/RenewalSuperAdmin';
 import RenewalSuperVisor from './Pages/SuperVisorDashboard/RenewalSuperVisor';
+import RemovalCS from './Pages/CSDashboard.jsx/RemovalCS';
 
 function App() {
   return (
